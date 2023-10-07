@@ -1,17 +1,25 @@
-import React from "react";
+import Link from "next/link";
+import { sort } from "fast-sort";
 
 interface IUser {
-    id: number;
-    name: string;
-    username: string;
-    email: string;
-  }
+  id: number;
+  name: string;
+  username: string;
+  email: string;
+}
 
-const UserTable = async () => {
+interface Props {
+  sortOrder: string;
+}
+
+const UserTable = async ({ sortOrder }: Props) => {
   const res = await fetch("https://jsonplaceholder.typicode.com/users", {
     cache: "no-store",
   });
-  const users = await res.json();
+  const users: IUser[] = await res.json();
+  const sortedUsers = sort(users).asc(
+    sortOrder === "email" ? (user) => user.email : (user) => user.name
+  );
   return (
     <div className="overflow-x-auto">
       <table className="table table-zebra">
@@ -23,14 +31,18 @@ const UserTable = async () => {
                 <input type="checkbox" className="checkbox" />
               </label>
             </th>
-            <th>Name</th>
+            <th>
+              <Link href={`?sortOrder=name`}>Name</Link>
+            </th>
             <th>Username</th>
-            <th>Email</th>
+            <th>
+              <Link href={`?sortOrder=email`}>Email</Link>
+            </th>
             <th></th>
           </tr>
         </thead>
         <tbody>
-          {users.map((item: IUser) => (
+          {sortedUsers.map((item: IUser) => (
             <tr key={item.id}>
               <th>
                 <label>
