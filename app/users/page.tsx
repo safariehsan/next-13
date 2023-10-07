@@ -11,7 +11,7 @@ const UsersPage = async ({ searchParams: { sortOrder } }: Props) => {
   console.log(sortOrder);
   return (
     <div>
-      <b>Users Page:</b>
+      <h1>Users Page:</h1>
       <hr />
       <p>{new Date().toLocaleTimeString()}</p>
       <hr />
