@@ -52,6 +52,9 @@ const Navbar = () => {
           <li>
             <Link href="/">Home</Link>
           </li>
+          <li>
+            <Link href="/api/auth/signin">Sign in</Link>
+          </li>
           <li tabIndex={0}>
             <details>
               <summary>Services</summary>
