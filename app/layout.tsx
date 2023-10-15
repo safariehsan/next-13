@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import Navbar from "./Navbar";
 import { Suspense } from "react";
 import AuthProvider from "./auth/Provider";
+import GoogleAnalyticsScript from "./GoogleAnalyticsScript";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,6 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" date-theme="forest">
+      <GoogleAnalyticsScript />
       <body className={inter.className}>
         <AuthProvider>
           <Navbar />
