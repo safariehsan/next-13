@@ -1,7 +1,12 @@
+"use client";
+
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import React from "react";
+import Loading from "./loading";
 
 const Navbar = () => {
+  const { status, data: session } = useSession();
   return (
     <div className="navbar bg-base-300">
       <div className="navbar-start">
@@ -71,7 +76,19 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Button</a>
+        <span className="btn cursor-text">
+          {status === "loading" && <Loading />}
+          {status === "unauthenticated" ? (
+            <Link href="/api/auth/signin">Sign in</Link>
+          ) : (
+            <>
+              <span>{session?.user!.name}</span>
+              <Link href="/api/auth/signout" className="ml-4 text-red-700">
+                Sign Out
+              </Link>
+            </>
+          )}
+        </span>
       </div>
     </div>
   );
