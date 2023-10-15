@@ -3,10 +3,10 @@
 import { useState } from "react";
 import Link from "next/link";
 import ProductCard from "./components/ProductCard/ProductCard";
-import { getServerSession } from "next-auth";
-import { authOptions } from "./api/auth/[...nextauth]/route";
-import bgImg from "@/public/images/bg.jpg";
-import Image from "next/image";
+// import { getServerSession } from "next-auth";
+// import { authOptions } from "./api/auth/[...nextauth]/route";
+// import bgImg from "@/public/images/bg.jpg";
+// import Image from "next/image";
 import dynamic from "next/dynamic";
 import Loading from "./loading";
 const HeavyComponent = dynamic(() => import("./components/HeavyComponent"), {
